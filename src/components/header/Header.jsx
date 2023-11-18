@@ -15,7 +15,7 @@ const Header = () => {
         </Link>
         <div className="menu gap-3 flex  ">
           <Link
-            to={"/restaurants"}
+            to={"restaurant-list"}
             className="text-gray-950  font-semibold text-xl hidden sm:inline"
           >
             Restaurants
@@ -36,7 +36,7 @@ const Header = () => {
       {isToggle && (
         <div className="flex   justify-center flex-col items-center gap-2 pb-3">
           <Link
-            to={"/restaurants"}
+            to={"restaurant-list"}
             className="text-gray-950 inline-block sm:hidden  font-semibold text-xl "
           >
             Restaurants
