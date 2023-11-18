@@ -1,15 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import EditModal from "./../../model/editModal";
 
 const RestaurantList = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditable,setIsEditable] = useState(false);
+  const [currentRestaurant,setCurrentRestaurant] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:8900/crud/get-restaurants").then((result) => {
       setRestaurants(result.data.data);
     });
-  }, [isLoading]);
+  }, [isLoading,isEditable]);
 
   const restaurantsUICards = restaurants?.map((restaurant) => (
     <div
@@ -20,7 +23,7 @@ const RestaurantList = () => {
       <p className="text-gray-600 mb-2">{restaurant.address}</p>
       <p className="text-gray-900">{`Contect-us: ${restaurant.contact}`}</p>
       <div className="flex justify-between mt-4">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-400">
+        <button onClick={() => editButtonHandler(restaurant)} className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-400">
           Edit
         </button>
         <button
@@ -47,6 +50,14 @@ const RestaurantList = () => {
       });
   };
 
+
+  const editButtonHandler = (data) =>{
+    setCurrentRestaurant(data);
+    setIsEditable(true);
+  }
+
+  
+
   return (
     <div className="my-8">
       <h1 className="text-3xl font-bold text-center mb-4">
@@ -55,6 +66,13 @@ const RestaurantList = () => {
       <div className="flex flex-wrap justify-center gap-6">
         {restaurantsUICards}
       </div>
+      {isEditable && (
+        <EditModal
+          currentRestaurant={currentRestaurant}
+          setIsEditable={setIsEditable}
+          isEditable={isEditable}
+        />
+      )}
     </div>
   );
 };
