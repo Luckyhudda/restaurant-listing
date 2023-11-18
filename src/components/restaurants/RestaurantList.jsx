@@ -24,6 +24,7 @@ const RestaurantList = () => {
           Edit
         </button>
         <button
+          onClick={() => restaurantDeleteHandler(restaurant.id)}
           className="bg-red-700 text-white px-4 py-2 rounded-md font-semibold hover:bg-red-400"
         >
           Delete
@@ -32,7 +33,19 @@ const RestaurantList = () => {
     </div>
   ));
 
- 
+  const restaurantDeleteHandler = (id) => {
+    setIsLoading(true);
+    axios
+      .delete(`http://localhost:8900/crud/delete-restaurant/${id}`)
+      .then((res) => {
+        console.log("restaurant remove from list",res);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("err",err);
+        setIsLoading(false);
+      });
+  };
 
   return (
     <div className="my-8">
