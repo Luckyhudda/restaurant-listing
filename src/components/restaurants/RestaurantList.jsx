@@ -1,16 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import EditModal from "./../../model/editModal";
+import Loader from "../loader/Loader";
 
 const RestaurantList = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isEditable,setIsEditable] = useState(false);
+  const [isFetching,setIsFetching] = useState(false)
   const [currentRestaurant,setCurrentRestaurant] = useState(null);
 
   useEffect(() => {
+    setIsFetching(true)
     axios.get("http://localhost:8900/crud/get-restaurants").then((result) => {
       setRestaurants(result.data.data);
+      setIsFetching(false)
+   
     });
   }, [isLoading,isEditable]);
 
@@ -64,7 +69,7 @@ const RestaurantList = () => {
         Choose Your Favorite Restaurant
       </h1>
       <div className="flex flex-wrap justify-center gap-6">
-        {restaurantsUICards}
+        {isFetching ? <Loader /> : restaurantsUICards}
       </div>
       {isEditable && (
         <EditModal
