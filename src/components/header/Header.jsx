@@ -37,11 +37,16 @@ const Header = () => {
         <div className="flex   justify-center flex-col items-center gap-2 pb-3">
           <Link
             to={"restaurant-list"}
+            onClick={() => setIsToggle(false)}
             className="text-gray-950 inline-block sm:hidden  font-semibold text-xl "
           >
             Restaurants
           </Link>
-          <Link to={"/add-restaurant"} className=" font-semibold">
+          <Link
+            to={"/add-restaurant"}
+            className=" font-semibold"
+            onClick={() => setIsToggle(false)}
+          >
             <button className="inline-block sm:hidden  text-white px-3 py-1 rounded-[4px] bg-rose-600 ">
               Add a Restaurant
             </button>
