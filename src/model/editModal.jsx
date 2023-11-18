@@ -54,9 +54,6 @@ const EditModal = ({ currentRestaurant, setIsEditable, isEditable }) => {
 
         <div
           className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-md"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-headline"
         >
           <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <h2 className="text-xl font-semibold mb-4">Edit Restaurant</h2>

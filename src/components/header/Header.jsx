@@ -6,14 +6,14 @@ const Header = () => {
   const [isToggle, setIsToggle] = useState(true);
   return (
     <header className="bg-violet-200 shadow-md">
-      <nav className="flex justify-between items-center px-6 sm:px-12 mxauto p-3">
+      <nav className="flex justify-between items-center px-6 sm:px-12  p-3">
         <Link to={"/"}>
           <h1 className="font-bold text-sm sm:text-xl flex-wrap ">
             <span className="text-gray-700 ">Resto</span>
             <span className="text-red-700  ">Rover</span>
           </h1>
         </Link>
-        <div className="menu gap-3 flex  ">
+        <div className=" gap-3 flex  ">
           <Link
             to={"restaurant-list"}
             className="text-gray-950  font-semibold text-xl hidden sm:inline"
