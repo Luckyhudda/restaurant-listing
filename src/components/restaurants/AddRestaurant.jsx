@@ -1,15 +1,20 @@
 /* eslint-disable react/prop-types */
-import  { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddRestaurant = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [newRestaurant, setNewRestaurant] = useState({
     name: "",
     address: "",
     contact: "",
   });
+
+  setTimeout(() => {
+    setError("");
+  }, 3000);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,6 +25,22 @@ const AddRestaurant = () => {
   };
 
   const addRestaurantHandler = () => {
+    const regEx = /^[0-9]{10}$/;
+
+    if (
+      !newRestaurant.name ||
+      !newRestaurant.address ||
+      !newRestaurant.contact
+    ) {
+      setError("Please fill in all details.");
+      return;
+    }
+
+    if (!regEx.test(newRestaurant.contact)) {
+      setError("Please enter a valid number.");
+      return;
+    }
+
     axios
       .post("http://localhost:8900/crud/add-restaurant", newRestaurant)
       .then((result) => {
@@ -39,6 +60,13 @@ const AddRestaurant = () => {
   return (
     <div className="bg-white p-6 mx-auto mt-3 lg:w-1/2">
       <h2 className="text-xl font-semibold mb-4">Add New Restaurant</h2>
+
+      {error && (
+        <p className="text-red-500 text-sm mb-4 bg-red-100 p-2 rounded-md">
+          {error}
+        </p>
+      )}
+
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
           Name:
