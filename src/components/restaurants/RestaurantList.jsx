@@ -12,11 +12,12 @@ const RestaurantList = () => {
 
   useEffect(() => {
     setIsFetching(true)
-    axios.get("http://localhost:8900/crud/get-restaurants").then((result) => {
-      setRestaurants(result.data.data);
-      setIsFetching(false)
-   
-    });
+    axios
+      .get("https://restaurant-listing2.onrender.com/crud/get-restaurants")
+      .then((result) => {
+        setRestaurants(result.data.data);
+        setIsFetching(false);
+      });
   }, [isLoading,isEditable]);
 
   const restaurantsUICards = restaurants?.map((restaurant) => (
@@ -44,13 +45,15 @@ const RestaurantList = () => {
   const restaurantDeleteHandler = (id) => {
     setIsLoading(true);
     axios
-      .delete(`http://localhost:8900/crud/delete-restaurant/${id}`)
+      .delete(
+        `https://restaurant-listing2.onrender.com/crud/delete-restaurant/${id}`
+      )
       .then((res) => {
-        console.log("restaurant remove from list",res);
+        console.log("restaurant remove from list", res);
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log("err",err);
+        console.log("err", err);
         setIsLoading(false);
       });
   };

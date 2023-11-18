@@ -21,7 +21,7 @@ const EditModal = ({ currentRestaurant, setIsEditable, isEditable }) => {
   const updateHandler = () => {
     axios
       .put(
-        `http://localhost:8900/crud/update-restaurant/${currentRestaurant.id}`,
+        `https://restaurant-listing2.onrender.com/crud/update-restaurant/${currentRestaurant.id}`,
         newData
       )
       .then((result) => {

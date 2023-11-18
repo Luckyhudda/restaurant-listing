@@ -42,7 +42,10 @@ const AddRestaurant = () => {
     }
 
     axios
-      .post("http://localhost:8900/crud/add-restaurant", newRestaurant)
+      .post(
+        "https://restaurant-listing2.onrender.com/crud/add-restaurant",
+        newRestaurant
+      )
       .then((result) => {
         console.log("restaurant added successfully", result);
         setNewRestaurant({
