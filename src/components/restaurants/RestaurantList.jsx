@@ -42,6 +42,7 @@ const RestaurantList = () => {
     </div>
   ));
 
+
   const restaurantDeleteHandler = (id) => {
     setIsLoading(true);
     axios
@@ -64,7 +65,6 @@ const RestaurantList = () => {
     setIsEditable(true);
   }
 
-  
 
   return (
     <div className="my-8">

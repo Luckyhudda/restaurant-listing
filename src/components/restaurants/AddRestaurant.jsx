@@ -41,6 +41,7 @@ const AddRestaurant = () => {
       return;
     }
 
+    
     axios
       .post(
         "https://restaurant-listing2.onrender.com/crud/add-restaurant",

@@ -10,6 +10,7 @@ const EditModal = ({ currentRestaurant, setIsEditable, isEditable }) => {
     }, [currentRestaurant]);
 
 
+    
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewData((prevData) => ({
